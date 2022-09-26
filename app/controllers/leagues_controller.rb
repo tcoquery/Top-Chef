@@ -25,7 +25,7 @@ class LeaguesController < ApplicationController
 
     respond_to do |format|
       if @league.save
-        format.html { redirect_to league_url(@league), notice: "League was successfully created." }
+        format.html { redirect_to root_path, notice: "League was successfully created." }
         format.json { render :show, status: :created, location: @league }
       else
         format.html { render :new, status: :unprocessable_entity }
