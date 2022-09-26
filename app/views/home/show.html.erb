@@ -1,1 +1,17 @@
-<%= render "partials/navbar" %>
+<div class="flex flex-col">
+  <%= render "partials/navbar" %>
+  <div class="max-w-3xl mx-auto mt-8">
+    <div class="flex justify-between items-baseline mb-6">
+      <% if notice.present? %>
+        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+      <% end %>
+      <%= link_to "Créer ta ligue", new_league_path, class: "mt-28", data: { action: "click->modal#open", turbo_stream: "" } %>
+    </div>
+    <% @leagues.each do |league| %>
+    <%= league.name%>
+    <%end%>
+  </div>
+
+  
+
+</div>

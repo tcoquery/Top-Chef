@@ -12,7 +12,7 @@ class LeaguesController < ApplicationController
 
   # GET /leagues/new
   def new
-    @league = League.new
+    @league = current_user.leagues.build
   end
 
   # GET /leagues/1/edit
@@ -21,7 +21,7 @@ class LeaguesController < ApplicationController
 
   # POST /leagues or /leagues.json
   def create
-    @league = League.new(league_params)
+    @league = current_user.leagues.new(league_params)
 
     respond_to do |format|
       if @league.save
