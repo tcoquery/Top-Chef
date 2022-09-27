@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
-    @team = Team.new
+    @team = current_user.teams.build
   end
 
   # GET /teams/1/edit
@@ -21,7 +21,8 @@ class TeamsController < ApplicationController
 
   # POST /teams or /teams.json
   def create
-    @team = Team.new(team_params)
+    @league = League.find(params[:id])
+    @team = @league.teams.new(team_params)
 
     respond_to do |format|
       if @team.save
@@ -65,6 +66,8 @@ class TeamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def team_params
-      params.require(:team).permit(:name)
+      @league = League.find(params[:id])
+
+      params.require(:team).permit(:name, :league_id, user_id: current_user.id)
     end
 end

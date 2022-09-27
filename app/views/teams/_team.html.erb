@@ -1,8 +1,7 @@
-<div id="<%= dom_id team %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+<div id="<%= dom_id league %>">
+  <div class="mt-4 font-bold border-b border-gray-200 w-full pb-2">
     <%= team.name %>
-  </p>
+  </div>
 
   <% if action_name != "show" %>
     <%= link_to "Show this team", team, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
