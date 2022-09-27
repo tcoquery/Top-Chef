@@ -8,6 +8,7 @@ class LeaguesController < ApplicationController
 
   # GET /leagues/1 or /leagues/1.json
   def show
+    @leagues = current_user.leagues.all
   end
 
   # GET /leagues/new
