@@ -21,8 +21,7 @@ class TeamsController < ApplicationController
 
   # POST /teams or /teams.json
   def create
-    @league = League.find(params[:id])
-    @team = @league.teams.new(team_params)
+    @team = current_user.teams.new(name: params[:team][:name], user_id: current_user.id, league_id: params[:team][:league_id])
 
     respond_to do |format|
       if @team.save
@@ -62,12 +61,5 @@ class TeamsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_team
       @team = Team.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def team_params
-      @league = League.find(params[:id])
-
-      params.require(:team).permit(:name, :league_id, user_id: current_user.id)
     end
 end
