@@ -9,6 +9,8 @@ class LeaguesController < ApplicationController
   # GET /leagues/1 or /leagues/1.json
   def show
     @leagues = current_user.leagues.all
+
+    @team = current_user.teams.where('league_id = ?', params[:id])
   end
 
   # GET /leagues/new

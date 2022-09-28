@@ -1,16 +1,36 @@
 <%= turbo_frame_tag "league" do %>
-<div class="flex">
-  <div>
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
-    <%= render @league %>
-
-    <%= link_to 'Edit this league', edit_league_path(@league), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
+  <div class="flex">
+    <div>
+      <% if notice.present? %>
+        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+      <% end %>
+      <%= render @league %>
+      <%= link_to 'Edit this league', edit_league_path(@league), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
       <%= button_to 'Destroy this league', league_path(@league), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
+    <aside class="w-64" aria-label="Sidebar">
+      <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
+        <ul class="space-y-2">
+          <li>
+            <h2 class="font-bold">Mon équipe</h2>      
+          </li>
+        </ul>
+        <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+        <h3>Mes candidats</h2>      
+          <li>
+            - Joffrey
+          </li>
+          <li>
+            - Arya
+          </li>
+          <li>
+            - Cersei
+          </li>
+        </ul>
+      </div>
+    </aside>
   </div>
-</div>
+  <% @team.each do |team|%>
+  <%= team.name%>
+  <%end%>
 <%end%>
