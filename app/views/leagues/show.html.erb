@@ -1,40 +1,68 @@
-<%= turbo_frame_tag "league" do %>
-  <div class="flex">
-    <div>
-      <% if notice.present? %>
-        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-      <% end %>
-      <%= render @league %>
-      <%= link_to 'Edit this league', edit_league_path(@league), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <%= button_to 'Destroy this league', league_path(@league), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-    </div>
-    <aside class="w-64" aria-label="Sidebar">
-      <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
+<%= render "partials/navbar" %>
+<div class="container flex mx-auto justify-between">
+  <aside class="w-64" aria-label="Sidebar">
+    <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
         <ul class="space-y-2">
           <li>
-            <h2 class="font-bold">
-              <% unless @team.first == nil %>
-                <%= @team.first.name %>
-              <% else %>
-                <%= link_to "Créer mon équipe", new_team_path(league_id: params[:id]), data: { turbo_frame: "teamForm"}, class:"focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
-                <%=turbo_frame_tag id="teamForm"%>
-              <%end%>
-            </h2>      
+            <h2 class="font-bold">Mes ligues</h2>      
           </li>
         </ul>
         <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
-        <h3>Mes candidats</h2>      
+          <% @leagues.each do | league | %>
           <li>
-            - Joffrey
+            <%= link_to league.name, league_path(league.id), data: { turbo_frame: "league", turbo_action: "replace" }, class:"font-medium hover:underline" %>
           </li>
-          <li>
-            - Arya
-          </li>
-          <li>
-            - Cersei
-          </li>
+          <% end %>
         </ul>
+        <div class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+          <%= link_to "Créer une nouvelle ligue", new_league_path, data: { action: "click->modal#open", turbo_stream: "" }, class:"focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>        
+        </div>
       </div>
-    </aside>
+  </aside>
+  <div class="flex flex-col grow">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+  <div>
+    <%= turbo_frame_tag "league" do %>
+      <div class="flex">
+        <div>
+          <% if notice.present? %>
+            <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+          <% end %>
+          <%= render @league %>
+          <%= link_to 'Edit this league', edit_league_path(@league), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+          <%= button_to 'Destroy this league', league_path(@league), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        </div>
+        <aside class="w-64" aria-label="Sidebar">
+          <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
+            <ul class="space-y-2">
+              <li>
+                <h2 class="font-bold">
+                  <% unless @team.first == nil %>
+                    <%= @team.first.name %>
+                  <% else %>
+                    <%= link_to "Créer mon équipe", new_team_path(league_id: params[:id]), data: { turbo_frame: "teamForm"}, class:"focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+                    <%=turbo_frame_tag id="teamForm"%>
+                  <%end%>
+                </h2>      
+              </li>
+            </ul>
+            <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+            <h3>Mes candidats</h2>      
+              <li>
+                - Joffrey
+              </li>
+              <li>
+                - Arya
+              </li>
+              <li>
+                - Cersei
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    <%end%>
   </div>
-<%end%>
+</div>

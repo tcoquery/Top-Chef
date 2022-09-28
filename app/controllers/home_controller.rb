@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def show
-    @leagues = current_user.leagues.all
+    if current_user
+      @leagues = current_user.leagues.all
+    end
   end
 end

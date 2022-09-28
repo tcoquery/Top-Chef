@@ -8,10 +8,12 @@
           </li>
         </ul>
         <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
-          <% @leagues.each do | league | %>
-          <li>
-            <%= link_to league.name, league_path(league.id), data: { turbo_frame: "league", turbo_action: "replace" }, class:"font-medium hover:underline" %>
-          </li>
+          <% if current_user %>
+            <% @leagues.each do | league | %>
+            <li>
+              <%= link_to league.name, league_path(league.id), data: { turbo_frame: "league", turbo_action: "replace" }, class:"font-medium hover:underline" %>
+            </li>
+            <% end %>
           <% end %>
         </ul>
         <div class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
