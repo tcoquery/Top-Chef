@@ -12,7 +12,13 @@
       <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
         <ul class="space-y-2">
           <li>
-            <h2 class="font-bold">Mon équipe</h2>      
+            <h2 class="font-bold">
+              <% unless @team.first == nil %>
+                <%= @team.first.name %>
+              <% else %>
+                <%= "Mon équipe" %>
+              <%end%>
+            </h2>      
           </li>
         </ul>
         <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
@@ -30,7 +36,4 @@
       </div>
     </aside>
   </div>
-  <% @team.each do |team|%>
-  <%= team.name%>
-  <%end%>
 <%end%>
