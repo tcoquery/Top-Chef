@@ -1,9 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="form"
 export default class extends Controller {
-  static targets = ["form"]
+static targets = ["form"];
 
-  connect() {
+  hide() {
+    if (typeof event !== 'undefined') {
+      event.preventDefault()
+    }
+    this.formTarget.classList.add("hidden");
   }
 }

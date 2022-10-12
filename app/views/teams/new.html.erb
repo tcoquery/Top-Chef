@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "teamForm" do %>
-  <div>
+  <div data-controller="form" data-form-target="form">
     <%= render "form", team: @team %>
   </div>
 <%end%>
