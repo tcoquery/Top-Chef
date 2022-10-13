@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :teams
   resources :leagues
+  resources :leagues_users
   devise_for :users
   devise_scope :user do
     # Redirects signing out users back to sign-in

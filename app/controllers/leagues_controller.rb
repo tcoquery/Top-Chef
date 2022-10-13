@@ -10,6 +10,10 @@ class LeaguesController < ApplicationController
   def show
     @leagues = current_user.leagues.all
 
+    @league_name = League.where('id = ?', params[:id]).pluck(:name).first
+
+    @league_member = current_user.leagues.where('league_id = ?', params[:id]).first
+
     @team = current_user.teams.where('league_id = ?', params[:id])
   end
 
@@ -28,6 +32,7 @@ class LeaguesController < ApplicationController
 
     respond_to do |format|
       if @league.save
+        LeaguesUsers.create(league_id: @league.id, user_id: current_user.id)
         format.html { redirect_to root_path, notice: "Ta ligue a bien été créée." }
         format.json { render :show, status: :created, location: @league }
       else
@@ -41,7 +46,7 @@ class LeaguesController < ApplicationController
   def update
     respond_to do |format|
       if @league.update(league_params)
-        format.html { redirect_to league_url(@league), notice: "League was successfully updated." }
+        format.html { redirect_to league_url(@league), notice: "Ta ligue a bien été modifiée." }
         format.json { render :show, status: :ok, location: @league }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +60,8 @@ class LeaguesController < ApplicationController
     @league.destroy
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Ta ligue a bien été supprimée." }
+      format.html { redirect_to root_path, notice: "Ta ligue a bien été supprimée
+      ." }
       format.json { head :no_content }
     end
   end
@@ -68,6 +74,6 @@ class LeaguesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def league_params
-      params.require(:league).permit(:name, :admin_id, :user_id)
+      params.require(:league).permit(:name, :admin_id)
     end
 end

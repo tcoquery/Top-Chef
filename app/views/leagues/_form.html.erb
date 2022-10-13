@@ -15,7 +15,6 @@
     <%= form.label :nom %>
     <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     <%= form.hidden_field :admin_id, value: current_user.id%>
-    <%= form.hidden_field :user_id, value: current_user.id%>
   </div>
 
   <div class="rounded-b mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">

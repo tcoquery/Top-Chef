@@ -24,16 +24,27 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
   <div>
+    <% if @league_member == nil %>
+      <%= @league_name%>
+      <%= form_with model: LeaguesUsers.new, url:leagues_users_path do |form| %>
+        <%= form.hidden_field :user_id, value: current_user.id%>
+        <%= form.hidden_field :league_id, value: params[:id]%>
+        <%= form.submit "rejoindre", class: "w-full sm:col-start-2 bg-blue-600 px-4 py-2 mb-4 text-white rounded-sm hover:bg-blue-700" %>
+      <%end%>
+
+    <% else %>
     <%= turbo_frame_tag "league" do %>
       <div class="flex">
+      
         <div>
           <% if notice.present? %>
             <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
           <% end %>
           <%= render @league %>
-          <%if @league.admin == current_user%>
-          <%= link_to 'Edit this league', edit_league_path(@league), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-          <%= button_to 'Destroy this league', league_path(@league), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+            <%= button_to 'Quitter cette ligue', leagues_user_path(user_id: current_user.id), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+            <%if @league.admin == current_user%>
+            <%= link_to 'Edit this league', edit_league_path(@league), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+            <%= button_to 'Destroy this league', league_path(@league), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
           <%end%>
         </div>
         <aside class="w-64" aria-label="Sidebar">
@@ -65,6 +76,7 @@
           </div>
         </aside>
       </div>
+    <%end%>
     <%end%>
   </div>
 </div>
