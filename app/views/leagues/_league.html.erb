@@ -48,48 +48,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Team 1
-                    </th>
-                    <td class="py-4 px-2">
-                        0
-                    </td>
-                    <td class="py-4 px-2">
-                        3
-                    </td>
-                    <td class="py-4 px-2">
-                        3
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Team 2
-                    </th>
-                    <td class="py-4 px-2">
-                        0
-                    </td>
-                    <td class="py-4 px-2">
-                        3
-                    </td>
-                    <td class="py-4 px-2">
-                        3
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Team 3
-                    </th>
-                    <td class="py-4 px-2">
-                        0
-                    </td>
-                    <td class="py-4 px-2">
-                        5
-                    </td>
-                    <td class="py-4 px-2">
-                        7
-                    </td>
-                </tr>
+            <% if @leagues_teams %>
+                <% @leagues_teams.each do |team| %>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <%= team.name %>
+                        </th>
+                    </tr>
+                <%end%>
+            <%end%>
             </tbody>
         </table>
     </div>
