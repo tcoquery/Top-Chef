@@ -1,4 +1,37 @@
-<div class="w-full">
+<%= render "partials/navbar" %>
+<div class="container flex mx-auto justify-between">
+  <aside class="w-64" aria-label="Sidebar">
+    <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
+      <ul class="space-y-2">
+        <li>
+          <h2 class="font-bold">Mes ligues</h2>      
+        </li>
+      </ul>
+      <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+        <% if current_user %>
+          <% @leagues.each do | league | %>
+          <li>
+            <%= link_to league.name, league_path(league.id), data: { turbo_frame: "league", turbo_action: "replace" }, class:"font-medium hover:underline" %>
+          </li>
+          <% end %>
+        <% end %>
+      </ul>
+      <div class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+        <%= link_to "Créer une nouvelle ligue", new_league_path, data: { action: "click->modal#open", turbo_stream: "" }, class:"focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>        
+      </div>
+    </div>
+  </aside>
+  <div class="flex flex-col grow">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <div>
+      <%=turbo_frame_tag id="league"%>
+    </div>
+  </div>
+</div> 
+
+<!-- <div class="w-full">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
@@ -11,4 +44,4 @@
   <div id="leagues" class="min-w-full">
     <%= render @leagues %>
   </div>
-</div>
+</div> -->
