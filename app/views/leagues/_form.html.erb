@@ -14,6 +14,9 @@
   <div class="my-5">
     <%= form.label :nom %>
     <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :mot_de_passe %>
+    <span>(pour une ligue privée)</span>
+    <%= form.password_field :password, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
     <%= form.hidden_field :admin_id, value: current_user.id%>
   </div>
 

@@ -1,9 +1,12 @@
 class LeaguesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_league, only: %i[ show edit update destroy ]
 
   # GET /leagues or /leagues.json
   def index
-    @leagues = League.all
+    if current_user
+      @leagues = current_user.leagues.all
+    end
   end
 
   # GET /leagues/1 or /leagues/1.json
@@ -15,6 +18,8 @@ class LeaguesController < ApplicationController
     @league_member = current_user.leagues.where('league_id = ?', params[:id]).first
 
     @team = current_user.teams.where('league_id = ?', params[:id])
+
+    @leagues_teams = Team.where('league_id = ?', params[:id])
   end
 
   # GET /leagues/new
@@ -33,7 +38,7 @@ class LeaguesController < ApplicationController
     respond_to do |format|
       if @league.save
         LeaguesUsers.create(league_id: @league.id, user_id: current_user.id)
-        format.html { redirect_to root_path, notice: "Ta ligue a bien été créée." }
+        format.html { redirect_to leagues_path, notice: "Ta ligue a bien été créée." }
         format.json { render :show, status: :created, location: @league }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -74,6 +79,6 @@ class LeaguesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def league_params
-      params.require(:league).permit(:name, :admin_id)
+      params.require(:league).permit(:name, :admin_id, :password)
     end
 end
