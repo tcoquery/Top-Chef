@@ -62,17 +62,9 @@
               </li>
             </ul>
             <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
-            <h3>Mes candidats</h2>      
-              <li>
-                - Joffrey
-              </li>
-              <li>
-                - Arya
-              </li>
-              <li>
-                - Cersei
-              </li>
+              <h3>Mes candidats</h2>      
             </ul>
+            <%= link_to "Commencer la sélection", candidates_path(league:params[:id])%>
           </div>
         </aside>
       </div>

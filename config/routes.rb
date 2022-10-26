@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :teams
   resources :leagues
+  resources :candidates
   resources :leagues_users
   devise_for :users
   devise_scope :user do

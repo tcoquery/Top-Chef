@@ -10,9 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_24_105135) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_25_120005) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "candidates", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "w2_points", default: 0
+    t.integer "w3_points", default: 0
+    t.integer "w4_points", default: 0
+    t.integer "w5_points", default: 0
+    t.integer "w6_points", default: 0
+    t.integer "w7_points", default: 0
+    t.integer "w8_points", default: 0
+    t.integer "w9_points", default: 0
+    t.integer "w10_points", default: 0
+    t.integer "w11_points", default: 0
+    t.integer "w12_points", default: 0
+    t.integer "w13_points", default: 0
+    t.integer "w14_points", default: 0
+    t.integer "w15_points", default: 0
+    t.integer "w16_points", default: 0
+    t.integer "w17_points", default: 0
+    t.integer "w18_points", default: 0
+    t.boolean "eliminated", default: false
+  end
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
@@ -35,6 +59,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_105135) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "league_id"
+    t.integer "candidate_one_id"
+    t.integer "candidate_two_id"
+    t.integer "candidate_three_id"
+    t.integer "candidate_four_id"
   end
 
   create_table "users", force: :cascade do |t|

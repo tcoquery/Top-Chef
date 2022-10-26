@@ -1,0 +1,9 @@
+<%= render "partials/navbar" %>
+<% @candidates.each do |candidate|%>
+  <%= candidate.name %>
+  <%= button_to "sélectionner" %>
+<%end%>
+
+<% @leagues_teams.each do |team|%>
+<%= team.name%>
+<%end%>
