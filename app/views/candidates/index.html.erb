@@ -1,9 +1,10 @@
 <%= render "partials/navbar" %>
 <% @candidates.each do |candidate|%>
-  <%= candidate.name %>
-  <%= button_to "sélectionner" %>
+<%= candidate.name%>
+  <%= form_with url: candidates_path do |f|%> 
+    <%= f.hidden_field :candidate_id, value:candidate.id%>
+    <%= f.hidden_field :league, value:params[:league]%>
+    <%= f.submit "Sélectionner" %>
+  <%end%>
 <%end%>
 
-<% @leagues_teams.each do |team|%>
-<%= team.name%>
-<%end%>
