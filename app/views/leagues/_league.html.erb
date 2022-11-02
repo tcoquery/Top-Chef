@@ -54,6 +54,198 @@
                         <th scope="row" class="py-4 px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <%= team.name %>
                         </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w2_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w2_points += team.candidate_one.w2_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w2_points += team.candidate_two.w2_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w2_points += team.candidate_three.w2_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w2_points += team.candidate_four.w2_points %>
+                            <%end%>
+                            <%= w2_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w3_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w3_points += team.candidate_one.w3_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w3_points += team.candidate_two.w3_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w3_points += team.candidate_three.w3_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w3_points += team.candidate_four.w3_points %>
+                            <%end%>
+                            <%= w3_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w4_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w4_points += team.candidate_one.w4_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w4_points += team.candidate_two.w4_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w4_points += team.candidate_three.w4_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w4_points += team.candidate_four.w4_points %>
+                            <%end%>
+                            <%= w4_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w5_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w5_points += team.candidate_one.w5_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w5_points += team.candidate_two.w5_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w5_points += team.candidate_three.w5_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w5_points += team.candidate_four.w5_points %>
+                            <%end%>
+                            <%= w5_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w6_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w6_points += team.candidate_one.w6_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w6_points += team.candidate_two.w6_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w6_points += team.candidate_three.w6_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w6_points += team.candidate_four.w6_points %>
+                            <%end%>
+                            <%= w6_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w7_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w7_points += team.candidate_one.w7_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w7_points += team.candidate_two.w7_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w7_points += team.candidate_three.w7_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w7_points += team.candidate_four.w7_points %>
+                            <%end%>
+                            <%= w7_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w8_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w8_points += team.candidate_one.w8_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w8_points += team.candidate_two.w8_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w8_points += team.candidate_three.w8_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w8_points += team.candidate_four.w8_points %>
+                            <%end%>
+                            <%= w8_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w9_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w9_points += team.candidate_one.w9_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w9_points += team.candidate_two.w9_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w9_points += team.candidate_three.w9_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w9_points += team.candidate_four.w9_points %>
+                            <%end%>
+                            <%= w9_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w10_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w10_points += team.candidate_one.w10_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w10_points += team.candidate_two.w10_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w10_points += team.candidate_three.w10_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w10_points += team.candidate_four.w10_points %>
+                            <%end%>
+                            <%= w10_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w11_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w11_points += team.candidate_one.w11_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w11_points += team.candidate_two.w11_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w11_points += team.candidate_three.w11_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w11_points += team.candidate_four.w11_points %>
+                            <%end%>
+                            <%= w11_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w12_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w12_points += team.candidate_one.w12_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w12_points += team.candidate_two.w12_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w12_points += team.candidate_three.w12_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w12_points += team.candidate_four.w12_points %>
+                            <%end%>
+                            <%= w12_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% w13_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% w13_points += team.candidate_one.w13_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% w13_points += team.candidate_two.w13_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% w13_points += team.candidate_three.w13_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% w13_points += team.candidate_four.w13_points %>
+                            <%end%>
+                            <%= w13_points %>
+                        </th>
                     </tr>
                 <%end%>
             <%end%>
