@@ -1,10 +1,11 @@
 <%= render "partials/navbar" %>
 <% @candidates.each do |candidate|%>
-<%= candidate.name%>
-  <%= form_with url: candidates_path do |f|%> 
-    <%= f.hidden_field :candidate_id, value:candidate.id%>
-    <%= f.hidden_field :league, value:params[:league]%>
-    <%= f.submit "Sélectionner" %>
+  <% unless @drafted_candidates.include?(candidate.id)%>
+    <%= candidate.name%>
+    <%= form_with url: candidates_path do |f|%> 
+      <%= f.hidden_field :candidate_id, value:candidate.id%>
+      <%= f.hidden_field :league, value:params[:league]%>
+      <%= f.submit "Sélectionner" %>
+    <%end%>
   <%end%>
 <%end%>
-

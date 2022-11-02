@@ -1,6 +1,19 @@
 class CandidatesController < ApplicationController
 
   def index
+    @drafted_candidates = []
+
+    @league_teams = Team.where('league_id = ?', params[:league])
+
+    @league_teams.each do |team| 
+      unless team.candidate_one.nil?
+        @drafted_candidates.push(team.candidate_one.id)
+        @drafted_candidates.push(team.candidate_two.id)
+        @drafted_candidates.push(team.candidate_three.id)
+        @drafted_candidates.push(team.candidate_four.id)
+      end
+    end
+
     @candidates = Candidate.all
   end
 
