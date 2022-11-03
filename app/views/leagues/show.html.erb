@@ -65,8 +65,28 @@
             <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
               <h3>Mes candidats</h2>      
             </ul>
+            <% unless @team.candidate_one.nil? %>
+              <li>
+                <%= @team.candidate_one.name %>
+              </li>
+            <%end%>            
+            <% unless @team.candidate_two.nil? %>
+              <li>
+                <%= @team.candidate_two.name %>
+              </li>
+            <%end%>            
+            <% unless @team.candidate_three.nil? %>
+              <li>
+                <%= @team.candidate_three.name %>
+              </li>
+            <%end%>
+            <% unless @team.candidate_four.nil? %>
+              <li>
+                <%= @team.candidate_four.name %>
+              </li>
+            <%end%>
             <% if @team.can_draft%>
-              <%= link_to "Choisir mes candidats", candidates_path(league:params[:id])%>
+              <%= link_to "Choisir un candidat", candidates_path(league:params[:id])%>
             <% end %>
           </div>
         </aside>
