@@ -45,6 +45,7 @@
             <%if @league.admin == current_user%>
             <%= link_to 'Modifier cette ligue', edit_league_path(@league), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
             <%= button_to 'Supprimer cette ligue', league_path(@league), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+            <%= button_to "Déterminer l'ordre de sélection", league_path(@league), method: :post, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
           <%end%>
         </div>
         <aside class="w-64" aria-label="Sidebar">

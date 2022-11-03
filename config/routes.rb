@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :teams
   resources :leagues
+  post '/leagues/:id', to: 'leagues#draft'
   resources :candidates
   resources :leagues_users
   devise_for :users

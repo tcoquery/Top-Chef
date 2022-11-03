@@ -11,8 +11,6 @@ class LeaguesController < ApplicationController
 
   # GET /leagues/1 or /leagues/1.json
   def show
-
-    
     @leagues = current_user.leagues.all
 
     @league_name = League.where('id = ?', params[:id]).pluck(:name).first
@@ -71,6 +69,27 @@ class LeaguesController < ApplicationController
       ." }
       format.json { head :no_content }
     end
+  end
+
+  def draft
+    @leagues_teams = Team.where('league_id = ?', params[:id])
+    draft_numbers = Array(1..@leagues_teams.length)
+    
+    @leagues_teams.each do | team |
+      team.update(draft_order: draft_numbers.sample)
+
+      draft_numbers.delete(team.draft_order)
+
+      if team.draft_order == 1
+        team.update(can_draft: true)
+      end
+    end
+    
+    #respond_to do |format|
+      #format.html { redirect_to root_path, notice: "Ta ligue a bien été supprimée
+      #." }
+      #format.json { head :no_content }
+      #end
   end
 
   private
