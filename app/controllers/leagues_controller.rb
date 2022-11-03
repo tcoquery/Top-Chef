@@ -17,7 +17,7 @@ class LeaguesController < ApplicationController
 
     @league_member = current_user.leagues.where('league_id = ?', params[:id]).first
 
-    @team = current_user.teams.where('league_id = ?', params[:id])
+    @team = current_user.teams.where('league_id = ?', params[:id]).first
 
     @leagues_teams = Team.where('league_id = ?', params[:id])
   end

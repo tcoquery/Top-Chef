@@ -53,8 +53,8 @@
             <ul class="space-y-2">
               <li>
                 <h2 class="font-bold">
-                  <% unless @team.first == nil %>
-                    <%= @team.first.name %>
+                  <% unless @team == nil %>
+                    <%= @team.name %>
                   <% else %>
                     <%= link_to "Créer mon équipe", new_team_path(league_id: params[:id]), data: { turbo_frame: "teamForm"}, class:"focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
                     <%=turbo_frame_tag id="teamForm"%>
@@ -65,7 +65,9 @@
             <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
               <h3>Mes candidats</h2>      
             </ul>
-            <%= link_to "Commencer la sélection", candidates_path(league:params[:id])%>
+            <% if @team.can_draft%>
+              <%= link_to "Choisir mes candidats", candidates_path(league:params[:id])%>
+            <% end %>
           </div>
         </aside>
       </div>
