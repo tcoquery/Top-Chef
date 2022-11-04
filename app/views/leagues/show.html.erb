@@ -20,9 +20,6 @@
       </div>
   </aside>
   <div class="grow">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
     <div class="h-full">
       <% if @league_member == nil %>
         <%= @league_name%>
@@ -35,6 +32,9 @@
         <%= turbo_frame_tag "league" do %>
           <div class="flex h-full">
             <div class="grow">
+              <% if notice.present? %>
+                <p class="py-2 px-3 bg-green-50 w-full text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+              <% end %>
               <%= render @league %>
                 <div class="flex">
                   <%= button_to 'Quitter cette ligue', leagues_user_path(user_id: current_user.id), method: :delete, class: "mt-2 ml-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
@@ -45,8 +45,8 @@
                   <%end%>
                 </div>
             </div>
-            <aside class="w-72 " aria-label="Sidebar">
-              <div class="overflow-y-auto py-4 px-3 bg-gray-100 rounded dark:bg-gray-800 h-full">
+            <aside class="w-72" aria-label="Sidebar">
+              <div class="py-4 px-3 bg-gray-100 rounded dark:bg-gray-800 h-full flex flex-col">
                 <ul class="space-y-2">
                   <li>
                     <h2 class="font-bold">
@@ -83,10 +83,11 @@
                       <%= @team.candidate_four.name %>
                     </li>
                   <%end%>
-                <% if @team.can_draft%>
-                  <%= link_to "Choisir un candidat", candidates_path(league:params[:id])%>
-                <% end %>
-              <%end%>
+                  <% if @team.can_draft%>
+                    <%= link_to "Choisir un candidat", candidates_path(league:params[:id])%>
+                  <% end %>
+                  <%= link_to 'Modifier mon équipe', edit_team_path(@team), class:"focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg mt-2 text-sm px-5 py-2.5 dark:focus:ring-yellow-900 w-48"  %>
+                <%end%>
               </div>
             </aside>
           </div>

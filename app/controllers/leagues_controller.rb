@@ -38,7 +38,7 @@ class LeaguesController < ApplicationController
     respond_to do |format|
       if @league.save
         LeaguesUsers.create(league_id: @league.id, user_id: current_user.id)
-        format.html { redirect_to leagues_path, notice: "Ta ligue a bien été créée." }
+        format.html { redirect_to league_path(@league.id), notice: "Ta ligue a bien été créée." }
         format.json { render :show, status: :created, location: @league }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,7 +65,7 @@ class LeaguesController < ApplicationController
     @league.destroy
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Ta ligue a bien été supprimée
+      format.html { redirect_to leagues_path, notice: "Ta ligue a bien été supprimée
       ." }
       format.json { head :no_content }
     end

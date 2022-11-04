@@ -3,7 +3,6 @@ class TeamsController < ApplicationController
 
   # GET /teams or /teams.json
   def index
-    @teams = Team.all
   end
 
   # GET /teams/1 or /teams/1.json
@@ -17,6 +16,7 @@ class TeamsController < ApplicationController
 
   # GET /teams/1/edit
   def edit
+    @league = Team.find(params[:id]).league
   end
 
   # POST /teams or /teams.json
@@ -25,7 +25,7 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to root_path, notice: "Team was successfully created." }
+        format.html { redirect_to league_path(params[:team][:league_id]), notice: "Ton équipe a bien été créée." }
         format.json { render :show, status: :created, location: @team }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class TeamsController < ApplicationController
   def update
     respond_to do |format|
       if @team.update(team_params)
-        format.html { redirect_to team_url(@team), notice: "Team was successfully updated." }
+        format.html { redirect_to leagues_path, notice: "Le nom de ton équipe a bien été modifiée." }
         format.json { render :show, status: :ok, location: @team }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,17 +49,15 @@ class TeamsController < ApplicationController
 
   # DELETE /teams/1 or /teams/1.json
   def destroy
-    @team.destroy
-
-    respond_to do |format|
-      format.html { redirect_to teams_url, notice: "Team was successfully destroyed." }
-      format.json { head :no_content }
-    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
       @team = Team.find(params[:id])
+    end
+
+    def team_params
+      params.require(:team).permit(:name)
     end
 end

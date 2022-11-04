@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :teams
+  resources :teams, only: [:new, :edit, :update, :create] 
   resources :leagues
   post '/leagues/:id', to: 'leagues#draft'
   resources :candidates
