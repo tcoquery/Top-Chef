@@ -1,7 +1,7 @@
 <%= render "partials/navbar" %>
-<div class="container flex mx-auto justify-between">
-  <aside class="w-64" aria-label="Sidebar">
-    <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
+<div class="flex w-full h-full">
+  <aside class="w-72" aria-label="Sidebar">
+    <div class="overflow-y-auto py-4 px-3 bg-gray-100 rounded dark:bg-gray-800 h-full">
         <ul class="space-y-2">
           <li>
             <h2 class="font-bold">Mes ligues</h2>      
@@ -19,81 +19,79 @@
         </div>
       </div>
   </aside>
-  <div class="flex flex-col grow">
+  <div class="grow">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
-  <div>
-    <% if @league_member == nil %>
-      <%= @league_name%>
-      <%= form_with model: LeaguesUsers.new, url:leagues_users_path do |form| %>
-        <%= form.hidden_field :user_id, value: current_user.id%>
-        <%= form.hidden_field :league_id, value: params[:id]%>
-        <%= form.submit "rejoindre", class: "w-full sm:col-start-2 bg-blue-600 px-4 py-2 mb-4 text-white rounded-sm hover:bg-blue-700" %>
-      <%end%>
-
-    <% else %>
-    <%= turbo_frame_tag "league" do %>
-      <div class="flex">
-      
-        <div>
-          <% if notice.present? %>
-            <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-          <% end %>
-          <%= render @league %>
-            <%= button_to 'Quitter cette ligue', leagues_user_path(user_id: current_user.id), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-            <%if @league.admin == current_user%>
-            <%= link_to 'Modifier cette ligue', edit_league_path(@league), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-            <%= button_to 'Supprimer cette ligue', league_path(@league), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-            <%= button_to "Déterminer l'ordre de sélection", league_path(@league), method: :post, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-          <%end%>
-        </div>
-        <aside class="w-64" aria-label="Sidebar">
-          <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
-            <ul class="space-y-2">
-              <li>
-                <h2 class="font-bold">
-                  <% unless @team == nil %>
-                    <%= @team.name %>
-                  <% else %>
-                    <%= link_to "Créer mon équipe", new_team_path(league_id: params[:id]), data: { turbo_frame: "teamForm"}, class:"focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
-                    <%=turbo_frame_tag id="teamForm"%>
+    <div class="h-full">
+      <% if @league_member == nil %>
+        <%= @league_name%>
+        <%= form_with model: LeaguesUsers.new, url:leagues_users_path do |form| %>
+          <%= form.hidden_field :user_id, value: current_user.id%>
+          <%= form.hidden_field :league_id, value: params[:id]%>
+          <%= form.submit "Rejoindre", class: "w-full sm:col-start-2 bg-blue-600 px-4 py-2 mb-4 text-white rounded-sm hover:bg-blue-700" %>
+        <%end%>
+      <% else %>
+        <%= turbo_frame_tag "league" do %>
+          <div class="flex h-full">
+            <div class="grow">
+              <%= render @league %>
+                <div class="flex">
+                  <%= button_to 'Quitter cette ligue', leagues_user_path(user_id: current_user.id), method: :delete, class: "mt-2 ml-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+                  <%if @league.admin == current_user%>
+                    <%= link_to 'Modifier cette ligue', edit_league_path(@league), class: "mt-2 ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+                    <%= button_to 'Supprimer cette ligue', league_path(@league), method: :delete, class: "mt-2 ml-2  rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+                    <%= button_to "Déterminer l'ordre de sélection", league_path(@league), method: :post, class: "mt-2 ml-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
                   <%end%>
-                </h2>      
-              </li>
-            </ul>
-            <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
-              <h3>Mes candidats</h2>      
-            </ul>
-            <% unless @team == nil %>>
-              <% unless @team.candidate_one.nil? %>
-                <li>
-                  <%= @team.candidate_one.name %>
-                </li>
-              <%end%>            
-              <% unless @team.candidate_two.nil? %>
-                <li>
-                  <%= @team.candidate_two.name %>
-                </li>
-              <%end%>            
-              <% unless @team.candidate_three.nil? %>
-                <li>
-                  <%= @team.candidate_three.name %>
-                </li>
+                </div>
+            </div>
+            <aside class="w-72 " aria-label="Sidebar">
+              <div class="overflow-y-auto py-4 px-3 bg-gray-100 rounded dark:bg-gray-800 h-full">
+                <ul class="space-y-2">
+                  <li>
+                    <h2 class="font-bold">
+                      <% unless @team == nil %>
+                        <%= @team.name %>
+                      <% else %>
+                        <%= link_to "Créer mon équipe", new_team_path(league_id: params[:id]), data: { turbo_frame: "teamForm"}, class:"focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+                        <%=turbo_frame_tag id="teamForm"%>
+                      <%end%>
+                    </h2>      
+                  </li>
+                </ul>
+                <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+                  <h3>Mes candidats</h2>      
+                </ul>
+                <% unless @team == nil %>
+                  <% unless @team.candidate_one.nil? %>
+                    <li>
+                      <%= @team.candidate_one.name %>
+                    </li>
+                  <%end%>            
+                  <% unless @team.candidate_two.nil? %>
+                    <li>
+                      <%= @team.candidate_two.name %>
+                    </li>
+                  <%end%>            
+                  <% unless @team.candidate_three.nil? %>
+                    <li>
+                      <%= @team.candidate_three.name %>
+                    </li>
+                  <%end%>
+                  <% unless @team.candidate_four.nil? %>
+                    <li>
+                      <%= @team.candidate_four.name %>
+                    </li>
+                  <%end%>
+                <% if @team.can_draft%>
+                  <%= link_to "Choisir un candidat", candidates_path(league:params[:id])%>
+                <% end %>
               <%end%>
-              <% unless @team.candidate_four.nil? %>
-                <li>
-                  <%= @team.candidate_four.name %>
-                </li>
-              <%end%>
-            <% if @team.can_draft%>
-              <%= link_to "Choisir un candidat", candidates_path(league:params[:id])%>
-            <% end %>
-          <%end%>
+              </div>
+            </aside>
           </div>
-        </aside>
-      </div>
-    <%end%>
-    <%end%>
+        <%end%>
+      <%end%>
+    </div>
   </div>
 </div>
