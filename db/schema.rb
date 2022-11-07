@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_03_091619) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_07_131749) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_091619) do
     t.integer "w17_points", default: 0
     t.integer "w18_points", default: 0
     t.boolean "eliminated", default: false
+    t.integer "total_points", default: 0
   end
 
   create_table "leagues", force: :cascade do |t|

@@ -2,7 +2,7 @@
     <div class="overflow-x-auto relative">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
-                <th colspan=13 class="py-3 px-2 text-center text-lg">
+                <th colspan=14 class="py-3 px-2 text-center text-lg">
                     <%= league.name %>
                 </th>
             </thead>
@@ -46,6 +46,9 @@
                     </th>
                     <th scope="col" class="py-3 px-2">
                         Semaine 13
+                    </th>
+                    <th scope="col" class="py-3 px-2">
+                        Total
                     </th>
                 </tr>
             <% if @leagues_teams %>
@@ -245,6 +248,22 @@
                                 <% w13_points += team.candidate_four.w13_points %>
                             <%end%>
                             <%= w13_points %>
+                        </th>
+                        <th scope="col" class="py-3 px-2">
+                            <% total_points = 0 %>
+                            <% unless team.candidate_one.nil? %>
+                                <% total_points += team.candidate_one.total_points %>
+                            <%end%>
+                            <% unless team.candidate_two.nil? %>
+                                <% total_points += team.candidate_two.total_points %>
+                            <%end%>
+                            <% unless team.candidate_three.nil? %>
+                                <% total_points += team.candidate_three.total_points %>
+                            <%end%>
+                            <% unless team.candidate_four.nil? %>
+                                <% total_points += team.candidate_four.total_points %>
+                            <%end%>
+                            <%= total_points %>
                         </th>
                     </tr>
                 <%end%>
