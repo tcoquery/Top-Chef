@@ -1,7 +1,7 @@
 <%= form_with(model: team, class: "contents") do |form| %>
   <% if team.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>  ²
 
       <ul>
         <% team.errors.each do |error| %>
