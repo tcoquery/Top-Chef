@@ -1,0 +1,76 @@
+<%= render "partials/navbar" %>
+<div class="container mx-auto flex flex-col items-center">
+  <% if current_user == User.first %>
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 w-full text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <%= @candidate.name%>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_2_points%>
+      <%= form.number_field :w2_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_3_points%>
+      <%= form.number_field :w3_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_4_points%>
+      <%= form.number_field :w4_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_5_points%>
+      <%= form.number_field :w5_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_6_points%>
+      <%= form.number_field :w6_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"%>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_7_points%>
+      <%= form.number_field :w7_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_8_points%>
+      <%= form.number_field :w8_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_9_points%>
+      <%= form.number_field :w9_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_10_points%>
+      <%= form.number_field :w10_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_11_points%>
+      <%= form.number_field :w11_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_12_points%>
+      <%= form.number_field :w12_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :week_13_points%>
+      <%= form.number_field :w13_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+    <%= form_with model: @candidate, method: "patch" do |form| %>
+      <%= form.label :total_points%>
+      <%= form.number_field :total_points %>
+      <%= form.submit class: "focus:outline-none bg-amber-400 hover:bg-amber-500 focus:ring-2 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900" %>
+    <% end %>
+  <% else %>
+    <p> Vous n'avez pas accès à cette page </p>
+  <%end%>
+</div>

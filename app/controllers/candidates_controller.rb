@@ -15,6 +15,24 @@ class CandidatesController < ApplicationController
     @candidates = Candidate.all
   end
 
+  def show
+    @candidate = Candidate.find(params[:id])
+  end
+
+  def update
+    @candidate = Candidate.find(params[:id])
+
+    respond_to do |format|
+      if @candidate.update(candidate_params)
+        format.html { redirect_to candidate_path(@candidate), notice: "Le candidat a bien été modifié." }
+        format.json { render :show, status: :ok, location: @candidate }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @candidate.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def create
     @user_team = Team.where('league_id = ? AND user_id = ?', params[:league], current_user.id).first
     @league_teams = Team.where('league_id = ?', params[:league]).length
@@ -40,6 +58,12 @@ class CandidatesController < ApplicationController
     @user_team.save
 
     redirect_to league_path(id: params[:league])
+  end
+
+  private
+  # Only allow a list of trusted parameters through.
+  def candidate_params
+    params.require(:candidate).permit(:w2_points, :w3_points, :w4_points, :w5_points, :w6_points, :w7_points, :w8_points, :w9_points, :w10_points, :w11_points, :w12_points, :w13_points, :total_points)
   end
 
 end

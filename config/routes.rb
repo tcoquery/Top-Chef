@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :teams, only: [:new, :edit, :update, :create] 
   resources :leagues
   post '/leagues/:id', to: 'leagues#draft'
-  resources :candidates
+  resources :candidates, only: [:index, :show, :update, :create] 
   resources :leagues_users
   devise_for :users
   devise_scope :user do
