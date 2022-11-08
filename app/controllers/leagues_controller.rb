@@ -4,8 +4,10 @@ class LeaguesController < ApplicationController
 
   # GET /leagues or /leagues.json
   def index
+    @leagues = League.all
+
     if current_user
-      @leagues = current_user.leagues.all
+      @user_leagues = current_user.leagues.all
     end
   end
 
@@ -13,7 +15,7 @@ class LeaguesController < ApplicationController
   def show
     @leagues = current_user.leagues.all
 
-    @league_name = League.where('id = ?', params[:id]).pluck(:name).first
+    @league = League.where('id = ?', params[:id]).first
 
     @league_member = current_user.leagues.where('league_id = ?', params[:id]).first
 

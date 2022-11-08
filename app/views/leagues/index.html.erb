@@ -9,9 +9,9 @@
       </ul>
       <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
         <% if current_user %>
-          <% @leagues.each do | league | %>
+          <% @user_leagues.each do | league | %>
           <li>
-            <%= link_to league.name, league_path(league.id), data: { turbo_frame: "league", turbo_action: "replace" }, class:"font-medium hover:underline" %>
+            <%= link_to league.name, league_path(league.id), data: { turbo_frame: "user_league", turbo_action: "replace" }, class:"font-medium hover:underline" %>
           </li>
           <% end %>
         <% end %>
@@ -28,7 +28,20 @@
       </div>
     <%end%>
     <div class="h-full">
-      <%=turbo_frame_tag id="league"%>
+      <% @leagues.each do |league|%>
+        <p class="py-2.5 px-5 w-full border border-gray-100">
+          <%= link_to league.name, league_path(league.id), data: { turbo_frame: "league", turbo_action: "replace" }, class:"font-medium hover:underline" %>
+          <%= LeaguesUsers.where("league_id = ?", league.id).count%>/4
+          <% if league.password.nil?%>
+            Ligue publique
+          <% else %>
+            Ligue privée
+          <%end%>
+        </p>
+      <% end %>
+    </div>
+    <div class="h-full">
+      <%=turbo_frame_tag id="user_league"%>
     </div>
   </div>
 </div> 
